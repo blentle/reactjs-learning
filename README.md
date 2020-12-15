@@ -1,4 +1,4 @@
-## ES6简介和简单语法
+## 一、ES6简介和简单语法
 
 ### 兼容性
 
@@ -71,10 +71,48 @@
   2.generator函数中间能停
 
   ```javascript
-  function *show(){}   或者function* show() {}
-  let genObj = show();
-  genObj.next();
-  genObj.next();
+      function *show(){}   或者function* show() {}
+      let genObj = show();
+      genObj.next();
+      genObj.next();
   ```
 
 + 模块化
+
+
+## 二、ReactJs
+
+### 简介
++ facebook 2013年推出
++ 官网 https://reactjs.org
++ version > 16 的版本代号叫 React Fiber
+
+### 上手
+1、使用官方推荐的脚手架工具, 创建一个工程 react-01; 切换到任意目录,执行
+
+```shell script
+    npx create-react-app react-01
+```
+等待片刻出现:
+```shell script
+    npx create-react-app react-01
+    npx: installed 67 in 14.782s
+    
+    Creating a new React app in E:\react-project\reactjs-learning\react-01.
+    
+    Installing packages. This might take a couple of minutes.
+    Installing react, react-dom, and react-scripts with cra-template...
+    
+    yarn add v1.9.4
+    [1/4] Resolving packages...
+    [2/4] Fetching packages...
+    info There appears to be trouble with your network connection. Retrying...
+    [########----------------------------------------------------------------------------------------------------] 114/1453
+```
+2、等待上面执行完, 切换到刚才创建的工程目录, 运行
+```shell script
+    cd react-01
+    yarn start 
+```
+
+
