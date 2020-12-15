@@ -114,5 +114,23 @@
     cd react-01
     yarn start 
 ```
+3、启动完成会出现
+```shell script
+   Starting the development server...
+   Compiled successfully!
+   
+   You can now view react-01 in the browser.
+   
+     Local:            http://localhost:3000
+     On Your Network:  http://10.78.0.22:3000
+   
+   Note that the development build is not optimized.
+   To create a production build, use yarn build.
+```
+然后打开浏览器就会看到页面
+
+### 组件化
+
+
 
 
