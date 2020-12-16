@@ -36,7 +36,16 @@ class TodoList extends Component {
         //先拷贝一遍
         const list = [...this.state.dataList];
         list.splice(index, 1);
-        this.setState({dataList: list})
+        this.setState({dataList: list});
+    }
+
+    getTodoItem() {
+        return this.state.dataList.map((item, index) => {
+            return (
+                <li key={index}><TodoItem  con={item} index={index} deleteItem={this.handleDelete.bind(this)}/></li>
+            )
+        });
+
     }
 
     render() {
@@ -48,11 +57,7 @@ class TodoList extends Component {
                     <button onClick={this.handleSubmit.bind(this)}>提交</button>
                 </div>
                 <ul>
-                    {this.state.dataList.map((item, index) => {
-                        return (
-                            <li><TodoItem con={item} index={index} deleteItem={this.handleDelete.bind(this)}/></li>
-                        )
-                    })}
+                    {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
