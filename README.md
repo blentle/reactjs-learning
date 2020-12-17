@@ -176,7 +176,8 @@
 + 当父组件的render函数运行时,所有的子组件render会自动运行.
 
 #### 4、React中的虚拟DOM
-虚拟DOM 其实就是一个 JS对象, 用它来描述真实的DOM. 如下的DOM
++ 虚拟DOM是什么
+其实就是一个 JS对象, 用它来描述真实的DOM. 如下的DOM
 ```javascript
    <div id="aaa"><span>hello world</span></div>
 ```
@@ -186,6 +187,12 @@
 ```
 每次数据变化时, 数据(props和state)和模板(JSX)生成一个新的虚拟DOM, 与原来的虚拟DOM比较(两个DOM对比,需要调用web application的api耗费性能,而 js 与js比较则很快)做改变,最后生成真实的DOM.
 这是为什么每次数据变化时, render函数重新渲染性能相较原始DOM重新渲染性能高的多的原因.
+
+React的createElement 偏底层的方法
+
++ 虚拟DOM的优点
+1. 提升性能
+2. 实现跨端应用 如 React Native
 
 
 
