@@ -212,20 +212,29 @@ React的createElement 偏底层的方法
     this.setState({dataList: list},() => {console.log(list.size())});
 ```
 
-#### 6、React中的生命周期函数
+#### 6、React中组件的生命周期函数
 生命周期函数指在某一个时刻会被组件自动调用.
 
 组件的生命过程:
-Initialization => Mounting(组件第一次被挂在到页面) => Updation
+Initialization => Mounting(组件第一次被挂在到页面) => Updation =》 Unmounting
 
 Mounting的两个函数:
 + 函数ComponentWillMount: 在组件即将被挂载到页面之前被执行.
 + 函数ComponentDidMount: 在组件被挂载到页面之后被执行.
 
 Updation的一些函数:
-+ component
++ componentWillReceiveProps(特殊,需要有子组件)
 + 函数shouldComponentUpdate(返回一个boolean类型), true告诉组件更新,false不更新
 + 函数componentWillUpdate: 组件被更新之前,它会自动执行,但它在shouldComponentUpdate之后执行. 且只有在shouldComponentUpdate返回true才会执行,否则不执行
++ 接下来执行 render函数
++ componentDidUpdate
+
+特殊的生命周期函数
++ componentWillReceiveProps 触发条件是: a.一个组件要从父组件接收参数; b.只要父组件的render函数被重新执行了;
+> 如果这个组件第一次存在与父组件中,不会执行,若之前已经存在于父组件中,才会执行
+
+Unmounting函数
++ componentWillUnmount 组件在被移除时执行,执行完成还会执行 componentDidUpdate,因为要重新渲染页面.
 
 
 
