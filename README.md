@@ -148,7 +148,7 @@
 + chrome浏览器插件 React Developer Tools  该插件不止能调试,还可以展示哪些网站是react开发.
 
 #### 2、PropTypes & DefaultProps
-+ PropTypes 用于 类型校验, 使用前需要导入这个模块, 每个组件都有一个propTypes属性,用于定义参数类型校验,后面可以包含非空检查
++ PropTypes 用于 类型校验, 使用前需要导入这个模块, 每个组件都有一个propTypes属性,用于定义参数类型校验,后面可以包含非空检查,支持的类型可以查官网文档
 ```javascript
     import PropTypes from 'prop-types';
     //使用
@@ -158,7 +158,7 @@
       handleClick: PropTypes.func
     };
 ```
-+ DefaultProps 一看到这个名字就知道是防止属性没值,在校验时不通过.
++ DefaultProps 一看到这个名字就知道是防止属性没值,在校验时不通过. 
 ```javascript
     MyComponent.defaultProps = {
       content: "这是默认的值",
@@ -171,8 +171,13 @@
     }
 ```
 
-#### 3、数据驱动的React背后的故事-Props, State和 render函数
-当组件的state和props发生变化时, render函数会重新执行, 数据包含 state 和 props
+#### 3、数据驱动的React背后的故事 Props, State和 render函数
++ 当组件的state和props发生变化时, render函数会重新执行, 数据包含 state 和 props
++ 当父组件的render函数运行时,所有的子组件render会自动运行.
+
+#### 4、React中的虚拟DOM
+
+
 
 
 
