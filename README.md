@@ -142,6 +142,40 @@
 + 单向数据流: 子组件接收到父组件的数据后, 只能使用,不能改变其值,因为从父组件传过的值是 read-only
 + 复杂传值: react 只是一个视图层框架,对于复杂的传值,如传原离当前节点的节点(对于一棵树来说),react做不了,或者说特别复杂,需要数据框架,如redux
 
+### 高级特性
+
+#### 1、调试工具
++ chrome浏览器插件 React Developer Tools  该插件不止能调试,还可以展示哪些网站是react开发.
+
+#### 2、PropTypes & DefaultProps
++ PropTypes 用于 类型校验, 使用前需要导入这个模块, 每个组件都有一个propTypes属性,用于定义参数类型校验,后面可以包含非空检查
+```javascript
+    import PropTypes from 'prop-types';
+    //使用
+    MyComponent.propTypes = {
+      content: PropTypes.string.isRequired,
+      index: PropTypes.number,
+      handleClick: PropTypes.func
+    };
+```
++ DefaultProps 一看到这个名字就知道是防止属性没值,在校验时不通过.
+```javascript
+    MyComponent.defaultProps = {
+      content: "这是默认的值",
+      index: 0,
+      handleClick: handleClick
+    };
+    handleClick() 
+    {
+        //do logic
+    }
+```
+
+#### 3、数据驱动的React背后的故事-Props, State和 render函数
+当组件的state和props发生变化时, render函数会重新执行, 数据包含 state 和 props
+
+
+
 
 
 

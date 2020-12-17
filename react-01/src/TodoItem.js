@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 class TodoItem extends Component {
 
     constructor(props) {
@@ -17,5 +18,13 @@ class TodoItem extends Component {
         return <div onClick={this.handleDel}>{this.props.con}</div>
     }
 }
+
+//拿到的属性做校验
+TodoItem.propTypes = {
+    con: PropTypes.number,
+    deleteItem: PropTypes.func,
+    index: PropTypes.number
+
+};
 
 export default TodoItem;
