@@ -174,6 +174,7 @@
 #### 3、数据驱动的React背后的故事 Props, State和 render函数
 + 当组件的state和props发生变化时, render函数会重新执行, 数据包含 state 和 props
 + 当父组件的render函数运行时,所有的子组件render会自动运行.
++ setState是一个异步函数
 
 #### 4、React中的虚拟DOM
 + 虚拟DOM是什么
@@ -193,6 +194,43 @@ React的createElement 偏底层的方法
 + 虚拟DOM的优点
 1. 提升性能
 2. 实现跨端应用 如 React Native
+
++ 虚拟DOM中的diff算法
+当数据发生变化时,会生成新的虚拟DOM, 会与原来的虚拟DOM作对比,设计的diff算法. 组件同级比对.
+
+#### 5、React中的ref的使用和同步setState
+在jsx里元素上添加一个ref属性,将当前DOM元素赋值给一个箭头函数,箭头函数参数就是当前DOM
+```javascript
+    <input id="content" value={this.state.data} onChange={this.handleInput.bind(this)} ref={(inc) => {this.s = inc}}/>
+```
+在其他地方就可以这样使用,如下 p取到 input框的值, react 由于是数据驱动,不推荐这么写
+```javascript
+    const p = this.s.value
+```
+前面说过setState是一个异步函数,但有时需要在调用setState成功后执行某些逻辑, setState函数提供了第二个参数(一个回调函数)如:
+```javascript
+    this.setState({dataList: list},() => {console.log(list.size())});
+```
+
+#### 6、React中的生命周期函数
+生命周期函数指在某一个时刻会被组件自动调用.
+
+组件的生命过程:
+Initialization => Mounting(组件第一次被挂在到页面) => Updation
+
+Mounting的两个函数:
++ 函数ComponentWillMount: 在组件即将被挂载到页面之前被执行.
++ 函数ComponentDidMount: 在组件被挂载到页面之后被执行.
+
+Updation的一些函数:
++ component
++ 函数shouldComponentUpdate(返回一个boolean类型), true告诉组件更新,false不更新
++ 函数componentWillUpdate: 组件被更新之前,它会自动执行,但它在shouldComponentUpdate之后执行. 且只有在shouldComponentUpdate返回true才会执行,否则不执行
+
+
+
+ 
+
 
 
 

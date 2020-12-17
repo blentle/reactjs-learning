@@ -21,10 +21,9 @@ class TodoItem extends Component {
 
 //拿到的属性做校验
 TodoItem.propTypes = {
-    con: PropTypes.number,
+    con: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     deleteItem: PropTypes.func,
     index: PropTypes.number
-
 };
 
 export default TodoItem;

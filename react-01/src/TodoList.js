@@ -36,7 +36,7 @@ class TodoList extends Component {
         //先拷贝一遍
         const list = [...this.state.dataList];
         list.splice(index, 1);
-        this.setState({dataList: list});
+        this.setState({dataList: list}, () => {console.log()});
     }
 
     getTodoItem() {
@@ -53,7 +53,7 @@ class TodoList extends Component {
             <Fragment>
                 <div>
                     <label htmlFor="content">输入内容</label>
-                    <input id="content" value={this.state.data} onChange={this.handleInput.bind(this)}/>
+                    <input id="content" value={this.state.data} onChange={this.handleInput.bind(this)} ref={(inc) => {this.s = inc}}/>
                     <button onClick={this.handleSubmit.bind(this)}>提交</button>
                 </div>
                 <ul>
