@@ -1,11 +1,11 @@
-## 一、ES6简介和简单语法
+# 一、ES6简介和简单语法
 
-### 兼容性
+## 兼容性
 
 + ES6诞生2015年，也叫ES2015
 + IE10+   Chrome    Firefox     移动端    NodeJs
 
-### 解决方案
+## 解决方案
 
 如何兼容低版本的不支持ES6的设备如 IE9
 
@@ -18,7 +18,7 @@
   <script type="text/babel"></script>
   ```
 
-### 新特性
+## 新特性
 
 + 变量
 
@@ -80,14 +80,14 @@
 + 模块化
 
 
-## 二、ReactJs
+# 二、ReactJs
 
-### 简介
+## 简介
 + facebook 2013年推出
 + 官网 https://reactjs.org
 + version > 16 的版本代号叫 React Fiber
 
-### 上手
+## 上手
 1、使用官方推荐的脚手架工具, 创建一个工程 react-01; 切换到任意目录,执行
 
 ```shell script
@@ -129,25 +129,25 @@
 ```
 然后打开浏览器就会看到页面
 
-### 组件化
+## 组件化
 在react里,组件是一个树形结构, 组件可以向下传递数据, 可以传普通的参数,也可以传递方法. 子组件通过this.props来接收参数.
 向下传递方法(函数)参数时,要记得this绑定.
 
-#### 1、JSX
+### 1、JSX
 + jsx 使用自定义的组件,必须是大写开头
 
-#### 2、传参
+### 2、传参
 + 父组件向子组件传参, 子组件 使用 this.props.参数名来接收
 + 子组件向父组件传参: 父组件向子组件传一个函数参数,如 <App handle=函数名/>,子组件调用它传参
 + 单向数据流: 子组件接收到父组件的数据后, 只能使用,不能改变其值,因为从父组件传过的值是 read-only
 + 复杂传值: react 只是一个视图层框架,对于复杂的传值,如传原离当前节点的节点(对于一棵树来说),react做不了,或者说特别复杂,需要数据框架,如redux
 
-### 高级特性
+## 高级特性
 
-#### 1、调试工具
+### 1、调试工具
 + chrome浏览器插件 React Developer Tools  该插件不止能调试,还可以展示哪些网站是react开发.
 
-#### 2、PropTypes & DefaultProps
+### 2、PropTypes & DefaultProps
 + PropTypes 用于 类型校验, 使用前需要导入这个模块, 每个组件都有一个propTypes属性,用于定义参数类型校验,后面可以包含非空检查,支持的类型可以查官网文档
 ```javascript
     import PropTypes from 'prop-types';
@@ -171,12 +171,12 @@
     }
 ```
 
-#### 3、数据驱动的React背后的故事 Props, State和 render函数
+### 3、数据驱动的React背后的故事 Props, State和 render函数
 + 当组件的state和props发生变化时, render函数会重新执行, 数据包含 state 和 props
 + 当父组件的render函数运行时,所有的子组件render会自动运行.
 + setState是一个异步函数
 
-#### 4、React中的虚拟DOM
+### 4、React中的虚拟DOM
 + 虚拟DOM是什么
 其实就是一个 JS对象, 用它来描述真实的DOM. 如下的DOM
 ```javascript
@@ -198,7 +198,7 @@ React的createElement 偏底层的方法
 + 虚拟DOM中的diff算法
 当数据发生变化时,会生成新的虚拟DOM, 会与原来的虚拟DOM作对比,设计的diff算法. 组件同级比对.
 
-#### 5、React中的ref的使用和同步setState
+### 5、React中的ref的使用和同步setState
 在jsx里元素上添加一个ref属性,将当前DOM元素赋值给一个箭头函数,箭头函数参数就是当前DOM
 ```javascript
     <input id="content" value={this.state.data} onChange={this.handleInput.bind(this)} ref={(inc) => {this.s = inc}}/>
@@ -212,7 +212,7 @@ React的createElement 偏底层的方法
     this.setState({dataList: list},() => {console.log(list.size())});
 ```
 
-#### 6、React中组件的生命周期函数
+### 6、React中组件的生命周期函数
 生命周期函数指在某一个时刻会被组件自动调用.
 
 组件的生命过程:
@@ -235,6 +235,9 @@ Updation的一些函数:
 
 Unmounting函数
 + componentWillUnmount 组件在被移除时执行,执行完成还会执行 componentDidUpdate,因为要重新渲染页面.
+
+## Redux
+
 
 
 
