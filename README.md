@@ -237,7 +237,7 @@ Unmounting函数
 + componentWillUnmount 组件在被移除时执行,执行完成还会执行 componentDidUpdate,因为要重新渲染页面.
 
 ## Redux
-
+![Redux Flow](./resources/Redux-Flow.png)
 
 
 
