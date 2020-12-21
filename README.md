@@ -241,15 +241,28 @@ Unmounting函数
 ### 1、redux的工作流程
 ![Redux Flow](./resources/Redux-Flow.png)
 
+官网给出的定义:
+```shell script
+Redux is a pattern and library for managing and updating application state, 
+using events called "actions". It serves as a centralized store for state 
+that needs to be used across your entire application, with rules ensuring 
+that the state can only be updated in a predictable fashion.
+```
+个人理解它是一个数据管理中心,使用一个叫actions的事件来更新state, 并保存state数据供整个应用的各大部分使用, 正如:
+```shellscript
+Redux helps you manage "global" state - state that is needed across many 
+parts of your application.
+```
+
 ### 2、初试ant-design
 切换到工程根目录执行:
 ```javascript
-    yarn add antd
+yarn add antd
 ```
 使用ant-design的组件(参考官网)
 ```javascript
-  import 'antd/dist/antd.css';
-  import { Input, Button } from 'antd';  
+import 'antd/dist/antd.css';
+import { Input, Button, List } from 'antd';  
 ```
 添加组件
 ```javascript
@@ -277,10 +290,29 @@ Unmounting函数
 #### ![avatar](./resources/xiaoguo.png)
 
 ### 3、初试Redux
-使用redux,必须先安装redux,切换到工程根目录执行:
+> 调试工具: Chrome插件 redux-devTools
+
+和ant-design一样, 使用redux,必须先安装redux,切换到工程根目录执行:
 ```javascript
-    yarn add redux
+yarn add redux
 ```
+step by step的创建 上面的工作流程图中的术语部分
++ 创建store, redux提供createStore(reducer)方法生成一个store, 创建store需要传入reducer, 
++ 创建reducer, 其实是一个辅助函数,如官网所说是一个事件监听器, 但不允许修改原来的数据, 需要计算出新的state数据, 如: (state, action) => {return state},
+state 很好理解, 就是之前react中的数据的state, action可以理解成事件类型,用于区分不同的事件.
+```shell script
+A reducer is a function that receives the current state and an action object, 
+decides how to update the state if necessary, and returns the new state: 
+(state, action) => newState. You can think of a reducer as an event listener 
+which handles events based on the received action (event) type.
+
+Reducers must always follow some specific rules:
+They should only calculate the new state value based on the state and action arguments
+They are not allowed to modify the existing state. Instead, they must make immutable updates, 
+by copying the existing state and making changes to the copied values.
+They must not do any asynchronous logic, calculate random values, or cause other "side effects"
+```
++ 创建action
 
 
 
