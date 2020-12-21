@@ -237,7 +237,45 @@ Unmounting函数
 + componentWillUnmount 组件在被移除时执行,执行完成还会执行 componentDidUpdate,因为要重新渲染页面.
 
 ## Redux
+
+### 1、redux的工作流程
 ![Redux Flow](./resources/Redux-Flow.png)
+
+### 2、初试ant-design
+切换到工程根目录执行:
+```javascript
+    yarn add antd
+```
+使用ant-design的组件(参考官网)
+```javascript
+  import 'antd/dist/antd.css';
+  import { Input, Button } from 'antd';  
+```
+添加组件
+```javascript
+     render() {
+             return (
+                 <div style={{marginLeft:'10px', marginTop:'10px'}}>
+                     <div><Input placeholder="todo list" style={{width: '300px', marginRight: '10px'}}/><Button type='primary'>搜索</Button></div>
+                     <List
+                         style = {{marginTop:'10px', width:'300px'}}
+                         size="small"
+                         bordered
+                         dataSource={data}
+                         renderItem={item => (
+                             <List.Item>
+                                 {item}
+                             </List.Item>
+                         )}
+                     />
+                 </div>
+     
+             );
+         }
+```
+效果:
+![avatar](./resources/xiaoguo.png)
+
 
 
 
