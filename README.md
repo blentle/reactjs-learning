@@ -273,8 +273,14 @@ Unmounting函数
              );
          }
 ```
-效果:
-![avatar](./resources/xiaoguo.png)
+效果如下:
+#### ![avatar](./resources/xiaoguo.png)
+
+### 3、初试Redux
+使用redux,必须先安装redux,切换到工程根目录执行:
+```javascript
+    yarn add redux
+```
 
 
 
