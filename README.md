@@ -80,7 +80,7 @@
 + 模块化
 
 
-# 二、ReactJs
+# 二、ReactJS
 
 ## 简介
 + facebook 2013年推出
