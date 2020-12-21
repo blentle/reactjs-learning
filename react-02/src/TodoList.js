@@ -10,12 +10,29 @@ class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        store.subscribe(this.handleStoreChange)
+    }
+
+    handleStoreChange() {
+        //重新取一次store中的数据
+        this.setState(store.getState());
+    }
+
+    handleInputChange(event) {
+        //修改store中的数据
+        const action = {
+            type:'change-input-v',
+            value: event.target.value
+        }
+        store.dispatch(action);
     }
 
     render() {
         return (
             <div style={{marginLeft:'10px', marginTop:'10px'}}>
-                <div><Input placeholder="todo list" style={{width: '300px', marginRight: '10px'}} value={this.state.inputData}/><Button type='primary'>搜索</Button></div>
+                <div><Input onChange={this.handleInputChange} placeholder="todo list" style={{width: '300px', marginRight: '10px'}} value={this.state.inputData}/><Button type='primary'>搜索</Button></div>
                 <List
                     style = {{marginTop:'10px', width:'300px'}}
                     size="small"

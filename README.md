@@ -312,7 +312,56 @@ They are not allowed to modify the existing state. Instead, they must make immut
 by copying the existing state and making changes to the copied values.
 They must not do any asynchronous logic, calculate random values, or cause other "side effects"
 ```
-+ 创建action
++ 创建action, 其实是创建监听事件如onChange,给一个input绑定一个onChange事件(注意在构造方法中改变this指向).
+```javascript
+handleInputChange(event) {
+        //修改store中的数据
+        const action = {
+            type:'change-input-v',
+            value: event.target.value
+        }
+        store.dispatch(action);
+}
+<Input onChange={this.handleInputChange}
+    
+```
+事件发生了,需要调用store.dispatch(action)告诉事件监听者,也就是reducer去执行相应的事件处理，再把处理后的数据给store,让其store更新(自动完成)
+而此时的reducer函数变成:
+```javascript
+const defaultState = {
+    inputData: '',
+    dataList:['Racing car sprays burning fuel into crowd.',
+        'Japanese princess to wed commoner.',
+        'Australian walks 100km after outback crash.',
+        'Man charged over missing wedding girl.',
+        'Los Angeles battles huge wildfires.']
+}
+
+export default (state = defaultState, action) => {
+    if(action.type === 'change-input-v') {
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.inputData = action.value;
+        //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
+        return newState;
+    }
+    return state;
+}
+```
+最后 store更新数据,让其响应页面
++ store 如何更新数据
+需要在组件的构造方法中调用store.subscribe(函数) 来刷新数据(重新获取一下store中的数据并更新给组件的state)
+```javascript
+//构造函数中
+store.subscribe(this.handleStoreChange);
+
+handleStoreChange() {
+    //重新取一次store中的数据
+    this.setState(store.getState());
+}
+```
+
+
+
 
 
 
