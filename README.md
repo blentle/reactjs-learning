@@ -315,12 +315,12 @@ They must not do any asynchronous logic, calculate random values, or cause other
 + 创建action, 其实是创建监听事件如onChange,给一个input绑定一个onChange事件(注意在构造方法中改变this指向).
 ```javascript
 handleInputChange(event) {
-        //修改store中的数据
-        const action = {
-            type:'change-input-v',
-            value: event.target.value
-        }
-        store.dispatch(action);
+    //修改store中的数据
+    const action = {
+        type:'change-input-v',
+        value: event.target.value
+    }
+    store.dispatch(action);
 }
 <Input onChange={this.handleInputChange}
     
