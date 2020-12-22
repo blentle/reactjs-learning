@@ -1,3 +1,4 @@
+import { CHANGE_INPUT_V, ADD_INPUT_V, DELETE_INPUT_V } from './actionTypes';
 const defaultState = {
     inputData: '',
     dataList:['Racing car sprays burning fuel into crowd.',
@@ -8,14 +9,14 @@ const defaultState = {
 }
 
 export default (state = defaultState, action) => {
-    if(action.type === 'change-input-v') {
+    if(action.type === CHANGE_INPUT_V) {
         const newState = JSON.parse(JSON.stringify(state));
         newState.inputData = action.value;
         //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
         return newState;
     }
 
-    if(action.type === 'add-input-v') {
+    if(action.type === ADD_INPUT_V) {
         const newState = JSON.parse(JSON.stringify(state));
         newState.dataList.push(newState.inputData);
         //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
@@ -23,7 +24,7 @@ export default (state = defaultState, action) => {
         return newState;
     }
 
-    if(action.type === 'delete-item-v') {
+    if(action.type === DELETE_INPUT_V) {
         const newState = JSON.parse(JSON.stringify(state));
         const index = action.index
         newState.dataList.splice(index, 1)
