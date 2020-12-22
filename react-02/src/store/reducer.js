@@ -19,8 +19,16 @@ export default (state = defaultState, action) => {
         const newState = JSON.parse(JSON.stringify(state));
         newState.dataList.push(newState.inputData);
         //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
+        newState.inputData = '';
         return newState;
     }
 
+    if(action.type === 'delete-item-v') {
+        const newState = JSON.parse(JSON.stringify(state));
+        const index = action.index
+        newState.dataList.splice(index, 1)
+        //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
+        return newState;
+    }
     return state;
 }

@@ -39,6 +39,14 @@ class TodoList extends Component {
         store.dispatch(action);
     }
 
+    handleDelete(index) {
+       const action = {
+           type:'delete-item-v',
+           index
+       }
+       store.dispatch(action);
+    }
+
     render() {
         return (
             <div style={{marginLeft:'10px', marginTop:'10px'}}>
@@ -51,8 +59,8 @@ class TodoList extends Component {
                     size="small"
                     bordered
                     dataSource={this.state.dataList}
-                    renderItem={item => (
-                        <List.Item>
+                    renderItem={(item, index) => (
+                        <List.Item onClick={this.handleDelete.bind(this, index)}>
                             {item}
                         </List.Item>
                     )}
