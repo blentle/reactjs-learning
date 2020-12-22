@@ -12,6 +12,7 @@ class TodoList extends Component {
         this.state = store.getState();
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.handleTaskAdd = this.handleTaskAdd.bind(this);
         store.subscribe(this.handleStoreChange)
     }
 
@@ -20,6 +21,7 @@ class TodoList extends Component {
         this.setState(store.getState());
     }
 
+    //输入框数据改变,展示到输入框
     handleInputChange(event) {
         //修改store中的数据
         const action = {
@@ -29,10 +31,21 @@ class TodoList extends Component {
         store.dispatch(action);
     }
 
+    //点击添加事件
+    handleTaskAdd() {
+        const action = {
+            type:'add-input-v'
+        }
+        store.dispatch(action);
+    }
+
     render() {
         return (
             <div style={{marginLeft:'10px', marginTop:'10px'}}>
-                <div><Input onChange={this.handleInputChange} placeholder="todo list" style={{width: '300px', marginRight: '10px'}} value={this.state.inputData}/><Button type='primary'>搜索</Button></div>
+                <div>
+                    <Input onChange={this.handleInputChange} placeholder="todo list" style={{width: '300px', marginRight: '10px'}} value={this.state.inputData}/>
+                    <Button type='primary' onClick={this.handleTaskAdd}>添加任务</Button>
+                </div>
                 <List
                     style = {{marginTop:'10px', width:'300px'}}
                     size="small"

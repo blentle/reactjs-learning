@@ -14,5 +14,13 @@ export default (state = defaultState, action) => {
         //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
         return newState;
     }
+
+    if(action.type === 'add-input-v') {
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.dataList.push(newState.inputData);
+        //返回修改好的state 给 store, 由store来修改, reducer并不修改 store的数据
+        return newState;
+    }
+
     return state;
 }
