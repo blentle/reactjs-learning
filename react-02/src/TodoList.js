@@ -3,9 +3,14 @@ import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 //因为使用了input组件,这里需要引入(参考官网)
 import store from './store';
-import { getInputChangeAction, getInputAddAction,  getInputDeleteAction, getAjaxInitDataAction } from './store/actionCreaors';
+import {
+    getInputChangeAction,
+    getInputAddAction,
+    getInputDeleteAction,
+    getAjaxInitDataAction,
+    getTodoList
+} from './store/actionCreaors';
 import TodoListUI from './TodoListUI';
-import axios from 'axios';
 class TodoList extends Component {
 
     constructor(props) {
@@ -28,15 +33,10 @@ class TodoList extends Component {
         />
     }
 
-
+    //初始化list数据
     componentDidMount() {
-        //使用charles模拟
-        axios.get("./list/data").then((result)=> {
-            //返回与 defaultState 里的dataList一样的结构
-            const d = result.data;
-            const action = getAjaxInitDataAction(d);
-            store.dispatch(action);
-        });
+       const action = getTodoList();
+       store.dispatch(action);
     }
 
     handleStoreChange() {
