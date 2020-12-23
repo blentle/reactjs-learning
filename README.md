@@ -393,6 +393,25 @@ const TodoListUI = (props) => {
 export default TodoListUI;
 ```
 
+### 5、发送异步请求获取数据
+> 使用axios 发送异步请求获取数据 (yarn add axios)
+
+在react组件的生命周期函数 componentDidMount 里获取数据
+```javascript
+import axios from 'axios';
+componentDidMount() {
+    //使用charles模拟
+    axios.get("./list/data").then((result)=> {
+        //返回与 defaultState 里的dataList一样的结构
+        const d = result.data;
+        const action = getAjaxInitDataAction(d);
+        store.dispatch(action);
+    });
+}
+```
+
+
+
 
 
 
