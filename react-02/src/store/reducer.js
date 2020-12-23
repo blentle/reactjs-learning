@@ -1,6 +1,6 @@
 import { CHANGE_INPUT_V, ADD_INPUT_V, DELETE_INPUT_V } from './actionTypes';
 const defaultState = {
-    inputData: '',
+    inputData: '初始化的数据',
     dataList:['Racing car sprays burning fuel into crowd.',
         'Japanese princess to wed commoner.',
         'Australian walks 100km after outback crash.',
