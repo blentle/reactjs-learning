@@ -410,7 +410,7 @@ componentDidMount() {
 }
 ```
 ### 5、初识Redux-thunk 
-> 使用axios 发送异步请求获取数据 (yarn add redux-thunk) ![Redux-Thunk的github](https://github.com/reduxjs/redux-thunk)
+> 使用axios 发送异步请求获取数据 (yarn add redux-thunk) [Redux-Thunk的github](https://github.com/reduxjs/redux-thunk)
 
 
 
