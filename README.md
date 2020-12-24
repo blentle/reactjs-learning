@@ -447,6 +447,8 @@ componentDidMount() {
 #### generator函数的复习
 
 ### 6、初识React-Redux
+#### Provider组件
+#### connect函数
 
 
 
