@@ -7,7 +7,6 @@ import {
     getInputChangeAction,
     getInputAddAction,
     getInputDeleteAction,
-    getAjaxInitDataAction,
     getTodoList
 } from './store/actionCreaors';
 import TodoListUI from './TodoListUI';
@@ -33,7 +32,7 @@ class TodoList extends Component {
         />
     }
 
-    //初始化list数据
+    //初始化list数据(getTodoList 是一个函数, 是因为 redux-thunk的支持)
     componentDidMount() {
        const action = getTodoList();
        store.dispatch(action);

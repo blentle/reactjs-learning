@@ -409,8 +409,44 @@ componentDidMount() {
     });
 }
 ```
-### 5、初识Redux-thunk 
+### 5、初识Redux-Thunk 
 > 使用axios 发送异步请求获取数据 (yarn add redux-thunk) [Redux-Thunk的github](https://github.com/reduxjs/redux-thunk)
+
+#### Redux-Thunk 是一个中间件, 中间指的是: action 与store中间.
+使用redux-thunk后, store.dispatch(action), 原来是对象的action 现在可以是函数了.如官网:
+```shell script
+With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. 
+Middleware extends the store's abilities, and lets you write async logic that interacts with the store.
+Thunks are the recommended middleware for basic Redux side effects logic, 
+including complex synchronous logic that needs access to the store, and simple async logic like AJAX requests.
+```
+示例如下:
+```javascript
+export const getTodoList = () => {
+    return (dispatch)=> {
+        //使用charles模拟
+        axios.get("./list/data").then((result)=> {
+            //返回与 defaultState 里的dataList一样的结构
+            const d = result.data;
+            const action = getAjaxInitDataAction(d);
+            dispatch(action);
+        });
+    }
+}
+```
+可以这样使用了:
+```javascript
+//初始化list数据
+componentDidMount() {
+   const action = getTodoList();
+   store.dispatch(action);
+}
+```
+### 5、初识Redux-Saga
+> 安装 yarn add redux-saga [Redux-Saga的github](https://github.com/redux-saga/redux-saga)
+#### generator函数的复习
+
+### 6、初识React-Redux
 
 
 
