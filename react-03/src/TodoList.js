@@ -7,9 +7,10 @@ import {
     getInputChangeAction,
     getInputAddAction,
     getInputDeleteAction,
-    getTodoList
+    getAjaxInitDataAction
 } from './store/actionCreaors';
 import TodoListUI from './TodoListUI';
+import axios from "axios";
 class TodoList extends Component {
 
     constructor(props) {
@@ -32,10 +33,14 @@ class TodoList extends Component {
         />
     }
 
-    //初始化list数据(getTodoList 是一个函数, 是因为 redux-thunk的支持)
+    //初始化list数据
     componentDidMount() {
-       const action = getTodoList();
-       store.dispatch(action);
+       axios.get("http://localhost.charlesproxy.com:3000/list/data").then((result)=> {
+           //返回与 defaultState 里的dataList一样的结构
+           const d = result.data;
+           const action = getAjaxInitDataAction(d);
+           store.dispatch(action);
+       });
     }
 
     handleStoreChange() {
