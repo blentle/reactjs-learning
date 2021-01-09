@@ -2,69 +2,62 @@ import React, {Component} from 'react';
 //引入antdesign的样式
 import 'antd/dist/antd.css';
 //因为使用了input组件,这里需要引入(参考官网)
-import store from './store';
 import {
     getInputChangeAction,
     getInputAddAction,
-    getInputDeleteAction,
-    getAjaxInitDataAction
+    getInputDeleteAction
 } from './store/actionCreaors';
-import TodoListUI from './TodoListUI';
-import axios from "axios";
+import { connect } from "react-redux";
+import {Button, Input, List} from "antd";
+import store from "./store";
 class TodoList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = store.getState();
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleStoreChange = this.handleStoreChange.bind(this);
-        this.handleTaskAdd = this.handleTaskAdd.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        store.subscribe(this.handleStoreChange)
-    }
-
     render() {
-        return <TodoListUI
-            inputData = {this.state.inputData}
-            handleInputChange={this.handleInputChange}
-            handleTaskAdd={this.handleTaskAdd}
-            handleDelete = {this.handleDelete}
-            dataList = {this.state.dataList}
-        />
+        return (<div style={{marginLeft: '10px', marginTop: '10px'}}>
+            <div>
+                <Input onChange={this.props.handleInputChange} placeholder="todo list"
+                       style={{width: '300px', marginRight: '10px'}} value={this.props.inputData}/>
+                <Button type='primary' onClick={this.props.handleTaskAdd}>添加任务</Button>
+            </div>
+            <List
+                style={{marginTop: '10px', width: '300px'}}
+                size="large"
+                bordered
+                dataSource={this.props.dataList}
+                renderItem={(item,index) => (
+                    <List.Item onClick= {()=> {this.props.handleDelete(index)}}>
+                        {item}
+                    </List.Item>
+                )}
+            />
+        </div>)
     }
-
-    //初始化list数据
-    componentDidMount() {
-       axios.get("http://localhost.charlesproxy.com:3000/list/data").then((result)=> {
-           //返回与 defaultState 里的dataList一样的结构
-           const d = result.data;
-           const action = getAjaxInitDataAction(d);
-           store.dispatch(action);
-       });
-    }
-
-    handleStoreChange() {
-        //重新取一次store中的数据
-        this.setState(store.getState());
-    }
-
-    //输入框数据改变,展示到输入框
-    handleInputChange(event) {
-        //修改store中的数据
-        const action = getInputChangeAction(event.target.value);
-        store.dispatch(action);
-    }
-
-    //点击添加事件
-    handleTaskAdd() {
-        const action = getInputAddAction()
-        store.dispatch(action);
-    }
-
-    handleDelete(index) {
-        const action = getInputDeleteAction(index)
-        store.dispatch(action);
+}
+const mapStateToProps = (state) => {
+    return {
+        inputData: state.inputData,
+        dataList: state.dataList
     }
 }
 
-export default TodoList;
+//store.dispatch
+const mapDispatchToProps = (dispatch) => {
+    return {
+        //输入框数据改变,展示到输入框
+        handleInputChange(event) {
+            //修改store中的数据
+            const action = getInputChangeAction(event.target.value);
+            dispatch(action);
+        },
+        //点击添加事件
+        handleTaskAdd() {
+            const action = getInputAddAction()
+            store.dispatch(action);
+        },
+        handleDelete(index) {
+            const action = getInputDeleteAction(index)
+            store.dispatch(action);
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
