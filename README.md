@@ -549,6 +549,18 @@ mapDispatchToProps函数接收dispach,使得各种事件可以直接使用this.p
 #### connect函数
 作用: 连接store 使的组件可以以props 的方式使用state, dispatch. 可以不在使用 subscribe的方式来监听数据的变化了.
 
+## 工程篇
+### 1. 样式隔离模块 styled-components
+> 为避免全局污染, 使用此模块处理.各模块使用自己独立的样式, 使用reset.css 统一所有pc样式,避免某些默认值导致在不同环境下的样式不统一
+
+安装模块
+```shell script
+    yarn add styled-components
+```
+
+
+
+
 
 
 
