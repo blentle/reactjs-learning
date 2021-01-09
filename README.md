@@ -463,9 +463,91 @@ flows easily and your actions stay pure.
 #### generator函数的复习
 
 ### 6、初识React-Redux
-#### Provider组件
-#### connect函数
 
+#### 使用步骤
+a. 首先使用 <Provider> 组件包装要渲染的组件
+```javascript
+    import { Provider } from "react-redux";
+    const App = (
+        <Provider>
+            <TodoList/>
+        </Provider>
+    );
+    ReactDOM.render(
+        <React.StrictMode>
+            <App/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+```
+b. 引入store,并使用属性的方式添加到被包裹的元素的<Provider>组件上,使得被包裹的组件能用属性的方式使用store
+```javascript
+    import store from "./store";
+    const App = (
+        <Provider store={store}>
+            <TodoList/>
+        </Provider>
+    );
+    ReactDOM.render(
+        <React.StrictMode>
+            <App/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+```
+c. 使用connect函数在组件(TodoList)里连接组件
+原来的
+```javascript
+    export default TodoList;
+```
+变成
+```javascript
+    import { connect } from "react-redux";
+    export default connect(null,null)(TodoList);
+```
+此时 TodoList即可连接store
+
+d. mapStateToProps
+定义 mapStateToProps 对象传给 connect函数, 让组件能使用props的方式获取state里的数据
+```javascript
+    const mapStateToProps = (state) => {
+        return {
+            inputData: state.inputData
+        }
+    }
+    export default connect(mapStateToProps,null)(TodoList);
+```
+组件就可以使用props方式获取inputData
+```javascript
+    render() {
+        return <TodoList
+            inputValue = {this.props.inputData}
+        />
+    }
+```
+e. mapDispatchToProps
+mapDispatchToProps函数接收dispach,使得各种事件可以直接使用this.props的方式调用定义在这里的函数
+```javascript
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            //输入框数据改变,展示到输入框
+            handleInputChange(event) {
+                //修改store中的数据
+                const action = getInputChangeAction(event.target.value);
+                dispatch(action);
+            }
+        }
+    }
+    export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+```
+调用的时候可以直接这样写:
+```javascript
+    <Input onChange={this.props.handleInputChange}  value={this.props.inputData}/>
+```
+#### Provider组件
+作用: 连接store 使的被它包裹的所有组件都能使用store
+#### connect函数
+作用: 连接store 使的组件可以以props 的方式使用state, dispatch. 可以不在使用 subscribe的方式来监听数据的变化了.
 
 
 
