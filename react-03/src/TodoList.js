@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 //引入antdesign的样式
 import 'antd/dist/antd.css';
 //因为使用了input组件,这里需要引入(参考官网)
@@ -10,28 +10,27 @@ import {
 import { connect } from "react-redux";
 import {Button, Input, List} from "antd";
 import store from "./store";
-class TodoList extends Component {
-
-    render() {
-        return (<div style={{marginLeft: '10px', marginTop: '10px'}}>
-            <div>
-                <Input onChange={this.props.handleInputChange} placeholder="todo list"
-                       style={{width: '300px', marginRight: '10px'}} value={this.props.inputData}/>
-                <Button type='primary' onClick={this.props.handleTaskAdd}>添加任务</Button>
+const TodoList = (props) => {
+        return (
+            <div style={{marginLeft: '10px', marginTop: '10px'}}>
+                <div>
+                    <Input onChange={props.handleInputChange} placeholder="todo list"
+                           style={{width: '300px', marginRight: '10px'}} value={props.inputData}/>
+                    <Button type='primary' onClick={props.handleTaskAdd}>添加任务</Button>
+                </div>
+                <List
+                    style={{marginTop: '10px', width: '300px'}}
+                    size="large"
+                    bordered
+                    dataSource={props.dataList}
+                    renderItem={(item,index) => (
+                        <List.Item onClick= {()=> {props.handleDelete(index)}}>
+                            {item}
+                        </List.Item>
+                    )}
+                />
             </div>
-            <List
-                style={{marginTop: '10px', width: '300px'}}
-                size="large"
-                bordered
-                dataSource={this.props.dataList}
-                renderItem={(item,index) => (
-                    <List.Item onClick= {()=> {this.props.handleDelete(index)}}>
-                        {item}
-                    </List.Item>
-                )}
-            />
-        </div>)
-    }
+        )
 }
 const mapStateToProps = (state) => {
     return {
