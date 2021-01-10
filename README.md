@@ -558,6 +558,12 @@ mapDispatchToProps函数接收dispach,使得各种事件可以直接使用this.p
     yarn add styled-components
 ```
 
+### 2. immutable模块
+
+安装模块
+```shell script
+    yarn add immutable
+```
 
 
 
