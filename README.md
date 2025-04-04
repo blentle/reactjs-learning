@@ -409,7 +409,7 @@ componentDidMount() {
     });
 }
 ```
-### 5、初识Redux-Thunk 
+### 6、初识Redux-Thunk 
 > 使用axios 发送异步请求获取数据 (yarn add redux-thunk) [Redux-Thunk的github](https://github.com/reduxjs/redux-thunk)
 
 #### Redux-Thunk 是一个中间件, 中间指的是: action 与store中间.
@@ -442,7 +442,7 @@ componentDidMount() {
    store.dispatch(action);
 }
 ```
-### 5、初识Redux-Saga
+### 7、初识Redux-Saga
 > 安装 yarn add redux-saga [Redux-Saga的github](https://github.com/redux-saga/redux-saga)
 
 官网定义如下
@@ -548,6 +548,32 @@ mapDispatchToProps函数接收dispach,使得各种事件可以直接使用this.p
 作用: 连接store 使的被它包裹的所有组件都能使用store
 #### connect函数
 作用: 连接store 使的组件可以以props 的方式使用state, dispatch. 可以不在使用 subscribe的方式来监听数据的变化了.
+
+### 7、新版本中重大变革Hooks
+> 16.8版本后, react引入了hooks, 使得函数组件也可以使用state和生命周期函数
+> 16.8、17、18及现在的19版本更新不大
+
+#### 7.1、useState
+> useState是一个hook函数, 用于在函数组件中使用state
+```javascript
+    import React, { useState } from 'react';
+    const [state, setState] = useState(initialState);
+
+```
+定义比原来的组件由类组件编程函数组件
+```javascript
+const App : React.FC = () => {
+    //这个就是useState hook, 
+    const [inputData, setInputData] = useState('');
+}
+
+```
+
+#### 7.2、useEffect
+
+
+
+
 
 ## 工程篇
 ### 1. 样式隔离模块 styled-components
